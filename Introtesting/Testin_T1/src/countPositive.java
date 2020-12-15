@@ -21,12 +21,4 @@ public class countPositive {
 		}
 		return count;
 	}
-
-	public static void main(String[] args) 
-	{
-		int[] x = {1,2,3,-1};
-		
-		System.out.println(countPos(x));
-	}
-
 }

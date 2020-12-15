@@ -4,22 +4,22 @@ import java.util.*;
 import org.junit.Test;
 
 public class countPositiveTest {
-	// this test passes
+	//Estos test pasan debido a la corrección del código
 	   @Test public void apartado2() 
 	   {
 	      int arr[] = {2, 7, -2};
-	      assertEquals("¿Cuantos positivos hay(sin error)?", 1, countPositive.countPos(arr));
+	      assertEquals("Apartado 2 sin error", 2, countPositive.countPos(arr));
 	   }
 	   
 	   @Test public void apartado3() 
 	   {
 	      int arr[] = {2, 0, -2};
-	      assertEquals("¿Cuantos positivos hay(con error)?", 1, countPositive.countPos(arr));
+	      assertEquals("Apartado 3 con error", 1, countPositive.countPos(arr));
 	   }
 	   @Test public void apartado4() 
 	   {
-	      int arr[] = {0, 7, 2};
-	      assertEquals("¿Cuantos positivos hay(con estado error)?", 1, countPositive.countPos(arr));
+	      int arr[] = null;
+	      assertEquals("Apartado 4 con error de estado", 0, countPositive.countPos(arr));
 	   }
 
 }
