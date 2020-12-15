@@ -1,0 +1,137 @@
+
+Ejemplo countPositive
+
+-> Código:
+
+	/**
+	* Counts positive elements in array
+	*
+	* @param x array to search
+	* @return number of positive elements in x
+	* @throws NullPointerException if x is null
+	*/
+	public static int countPositive (int[] x)
+	{
+	int count = 0;
+	for (int i=0; i < x.length; i++)
+	{
+	if (x[i] >= 0)
+	{
+	count++;
+	}
+	}
+	return count;
+	}
+
+1) El fallo del programa se encuentra en la condicion dentro del for.
+Ya que si estamos analizando una función que cuenta la cantidad de elementos,
+en este caso números que son positivos, esa condicion, si en el array de enteros
+se encuentra un 0, lo cuenta como número positivo cuando no lo es.
+Luego la modificación que haría es cambiar ese operador lógico >= por un > 0:
+	...
+	for(...){
+		if(x[i]>0){
+			count++;
+		}
+		...
+	}
+	
+2)Test: [2,3,1,4,-2]	obtenido:4 ; esperado: 4.
+3)Test: [1,2,0,-1,-2]	obtenido: 3 ; esperado: 2.
+4)Test: [null,2,3,4,-2] obtenido: NullPointerException ; esperado: NullPointerException
+Esto ocurre debido a que el programa tiene una función que lanza un error si la x
+que se le proporciona en el array es null.
+5)Cuando i=0 (primera posición del array) localiza en la sentencia if al elemento null
+lanza el error NullPointerException que corta la ejecución del programa imprimiendo 
+el error que se ha dado. Por lo que el contador de programa no pasa a evaluar la siguiente 
+sentencia del array ya que ha lanzado dicho error.
+Si el null estuviera en otra posición del array recorrería dicho bucle hasta aparecer 
+el null.
+
+
+Ejemplo lastZero
+
+-> Código:
+	
+	/**
+	* Find LAST index of zero
+	*
+	* @param x array to search
+	* @return index of last 0 in x; -1 if absent
+	* @throws NullPointerException if x is null
+	*/
+	public static int lastZero (int[] x)
+	{
+		for (int i = 0; i < x.length; i++)
+		{
+			if (x[i] == 0)
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+1)El único error que puedo ver, si se puede tomar como un error, es que al detectar la posicion del 
+  0 te devuelve la posición según los indices del array, es decir en vez de devolverte la primera posición
+  como un 1 te la devuelve como un 0.
+2)
+3)
+4)
+5)
+	
+Ejemplo findLast
+->código:
+/**
+* Find last index of element
+*
+* @param x array to search
+* @param y value to look for
+* @return last index of y in x; -1 if absent
+* @throws NullPointerException if x is null
+*/
+public static int findLast (int[] x, int y)
+{
+	for (int i=x.length-1; i > 0; i--)
+	{
+		if (x[i] == y)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+1)Aqui el error que podemos comprobar es en el recorrido del for, ya que si empezamos desde el
+el tamaño delarray - 1 hasta una posicion antes del 0 nos estamos comiendo una posicion del array.
+2)
+3)
+4)
+5)
+
+Ejemplo oddOrPos
+->código:
+/**
+* Count odd or positive elements in an array
+*
+* @param x array to search
+* @return count of odd or positive elements in x
+* @throws NullPointerException if x is null
+*/
+public static int oddOrPos (int[] x)
+{
+	int count = 0;
+	for (int i = 0; i < x.length; i++)
+	{
+		if (x[i]%2 == 1 || x[i] > 0)
+		{
+			count++;
+		}
+	}
+	return count;
+}
+
+1)Pues el fallo que puedo observar es que en la condición al poner el operador lógico OR con que una de las dos condiciones sea cierta el contador aumenta.
+2)
+3)
+4)
+5)
