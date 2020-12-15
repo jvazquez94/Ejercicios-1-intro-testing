@@ -38,7 +38,7 @@ Luego la modificación que haría es cambiar ese operador lógico >= por un > 0:
 	
 2)Test: [2,3,1,4,-2]	obtenido:4 ; esperado: 4.
 3)Test: [1,2,0,-1,-2]	obtenido: 3 ; esperado: 2.
-4)Test: [null,2,3,4,-2] obtenido: NullPointerException ; esperado: NullPointerException
+4)Test: {null} obtenido: NullPointerException ; esperado: NullPointerException
 Esto ocurre debido a que el programa tiene una función que lanza un error si la x
 que se le proporciona en el array es null.
 5)Cuando i=0 (primera posición del array) localiza en la sentencia if al elemento null
@@ -72,13 +72,14 @@ Ejemplo lastZero
 		return -1;
 	}
 	
-1)El único error que puedo ver, si se puede tomar como un error, es que al detectar la posicion del 
-  0 te devuelve la posición según los indices del array, es decir en vez de devolverte la primera posición
-  como un 1 te la devuelve como un 0.
-2)
-3)
-4)
-5)
+1)El error que puedo detectar, es que a la hora de buscar el último cero te va a devolver siempre la posición del primer
+0 encontrado, es decir si en el array hubiera más de un cero, devolvería la posición del primero encontrado. Para resolverlo
+hay que, en vez de devolver la posición nada más encontrarlo, guardar la posición del ultimo encontrado en una variable y devolverla al
+finalizar el bucle, inicializando esa variable a -1 para que empiece desde estado de error si no lo encuentra durante todo el array.
+2)Test: {2,0,-2} -> esperado:1 ; encontrado:1 
+3)Test: {2,0,0} -> esperado:2 ; encontrado: 1
+4)Test: {null} -> esperado:NullPointerException ; encontrado: NullPointerException
+5)El único error de estado que se puede esperar es NullPointerException de igual manera que ocurre en el primer apartado.
 	
 Ejemplo findLast
 ->código:
@@ -103,10 +104,11 @@ public static int findLast (int[] x, int y)
 }
 1)Aqui el error que podemos comprobar es en el recorrido del for, ya que si empezamos desde el
 el tamaño delarray - 1 hasta una posicion antes del 0 nos estamos comiendo una posicion del array.
-2)
-3)
-4)
-5)
+Luego para corregirlo simplemente tenemos que poner un >= 0 en el límite segundo del for.
+2)Test: {1,7,2} -> esperado: 2 ; encontrado: 2
+3)Test: {2,0,3} -> esperado: 0 ; encontrado: -1
+4)Test: {null} -> esperado:NullPointerException ; encontrado: NullPointerException
+5)El único error de estado que se puede esperar es NullPointerException de igual manera que ocurre en el primer apartado.
 
 Ejemplo oddOrPos
 ->código:
@@ -130,8 +132,10 @@ public static int oddOrPos (int[] x)
 	return count;
 }
 
-1)Pues el fallo que puedo observar es que en la condición al poner el operador lógico OR con que una de las dos condiciones sea cierta el contador aumenta.
-2)
-3)
-4)
-5)
+1)El error que he visto es en la parte condicional del if al identificar impares, ya que los números negativos también son considerados pares o impares,
+y para este  caso el resto de una división de un número negativo impar no da 1, si no -1, lo que provoca el error.
+Para solucionarlo ponemos otro OR en el if con la condicion de que el resto divisible por 2 igual a -1.
+2)Test: {1,0,2} -> esperado:2 ; encontrado:2
+3)Test: {2,0,-1} -> esperado:2 ; encontrado:1
+4)Test: {null} -> esperado:NullPointerException ; encontrado: NullPointerException
+5)El único error de estado que se puede esperar es NullPointerException de igual manera que ocurre en el primer apartado.
